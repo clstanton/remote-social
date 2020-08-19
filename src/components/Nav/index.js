@@ -1,24 +1,28 @@
 import React from 'react';
+import { Container, Navbar, Nav } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-function Nav() {
+class Navigation extends React.Component {
 
-  return (
-    <header>
-        <h2>
-            <a href="/">Remote Social</a>
-        </h2>
-        <nav>
-            <ul className="flex-row">
-                <li className="mx-2">
-                    <a href="#about">About</a>
-                </li>
-                <li className="mx-2">
-                    <a href="#contact">Contact</a>  
-                </li>
-            </ul>
-        </nav>
-    </header>
-  );
+    render() {
+        return (
+            <Container>
+            <Navbar expand="lg" fixed="top" className="nav-bar ml-auto" bg="transparent" >
+            <Navbar.Brand href="/">Remote Social</Navbar.Brand>
+  
+              <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
+              <Navbar.Collapse id="navbar-toggle">
+                
+                  <Nav className="ml-auto">
+                    <Link className="nav-link" to="/about">Browse</Link>
+                    <Link className="nav-link" to="/projects">Library</Link>
+                    <Link className="nav-link" to="/resume">Account</Link>
+                  </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+            </Container>
+        );
+    }
 }
 
-export default Nav;
+export default Navigation;

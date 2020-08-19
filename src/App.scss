@@ -1,0 +1,58 @@
+$color-primary : rgb(0, 0, 0);
+$color-secondary: rgb(238, 79, 79);
+$color-text: rgb(207, 207, 207);
+
+body {
+  background: $color-primary;
+  color: $color-text;
+}
+
+.nav-bar {
+  color: $color-text;
+}
+
+.navbar-brand {
+  color: $color-text !important;
+}
+
+.nav-link {
+  color: $color-text !important;
+}
+
+.homepage {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background-image: url('./assets/images/felix-mooneeram-evlkOfkQ5rE-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+}
+
+.home-container {
+  margin-top: 30vh;
+  max-width: 86%;
+}
+
+.home-text {
+  text-align: center;
+}
+
+.search-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid $color-secondary;
+  color: $color-secondary;
+}
+
+@media only screen and (max-width: 734px) {
+  .home-container {
+    margin-top: 20vh;
+  }
+}
+
+@media only screen and (max-width: 405px) {
+  .home-text {
+    font-size: 28px;
+  }
+}
