@@ -1,16 +1,26 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
-//import coverImage from "../../assets/cover/cover-image.jpg";
+import { InputGroup, FormControl, Form, Button } from 'react-bootstrap';
 
 function About() {
   return (
     <section className="my-5 homepage">
         <div className="home-container">
+
           <p className="display-4 home-text">Keep Track of Movies Your Way.</p>
-          <Form.Group>
-              <Form.Control size="lg" type="text" placeholder="The Dark Knight" />
-              <Button type="submit" size="lg" className="search-btn">Search</Button>
-          </Form.Group>
+
+          <div className="home-input">
+            <InputGroup className="mb-3">
+              <FormControl
+                placeholder="The Dark Knight"
+                aria-label="Movie Search Button"
+                aria-describedby="basic-addon2"
+              />
+            </InputGroup>
+
+            <InputGroup>
+                <Button variant="outline-danger" className="search-btn">Search</Button>
+            </InputGroup>
+          </div>
         </div>
     </section>
   );

@@ -50,8 +50,7 @@ export const getMe = (token) => {
     });
   };
   
-  // make a search to google books api
-  // https://www.googleapis.com/books/v1/volumes?q=harry+potter
+  // make a search to UTelly API
   export const searchUtelly = (query) => {
     return fetch(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${query}`, {
         "method": "GET",

@@ -1,7 +1,6 @@
 import React from 'react';
 import Navigation from './components/Nav';
 import About from './components/About';
-import ContactForm from './components/Contact';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.scss';
 

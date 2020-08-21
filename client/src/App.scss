@@ -38,9 +38,16 @@ body {
   text-align: center;
 }
 
+.home-input {
+  width: 60%;
+  justify-content: center;
+  margin: auto;
+}
+
 .search-btn {
-  margin-top: 10px;
-  background: transparent;
+  margin: auto;
+  margin-top: 5px;
+  background: rgba(0, 0, 0, 0.753);
   border: 1px solid $color-secondary;
   color: $color-secondary;
 }
