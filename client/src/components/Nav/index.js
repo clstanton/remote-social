@@ -14,9 +14,9 @@ class Navigation extends React.Component {
                 <Navbar.Collapse id="navbar-toggle">
                   
                     <Nav className="ml-auto">
-                      <Link className="nav-link" to="/about">Browse</Link>
-                      <Link className="nav-link" to="/projects">Library</Link>
-                      <Link className="nav-link" to="/resume">Account</Link>
+                      <Link className="nav-link" to="/browse">Browse</Link>
+                      <Link className="nav-link" to="/library">Library</Link>
+                      <Link className="nav-link" to="/account">Account</Link>
                     </Nav>
                 </Navbar.Collapse>
               </Navbar>
