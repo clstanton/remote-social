@@ -30,16 +30,19 @@ const SearchMovies = () => {
         throw new Error('Something went wrong!');
       }
 
-      const { items } = await response.json();
+      const { results } = await response.json();
 
-      const movieData = items.map((movie) => ({
+      const movieData = results.map((movie) => ({
         movieId: movie.id,
-        picture: movie.picture, //|| ['No providers to display'],
+        // picture: movie.picture, //|| ['No providers to display'],
         name: movie.name,
-        locations: movie.locations,
-        provider: movie.provider,
-        weight: movie.weight,
-        //: movie.volumeInfo.imageLinks?.thumbnail || '',
+        // locations: movie.locations,
+        // provider: movie.provider,
+        // weight: movie.weight,
+        // : movie.volumeInfo.imageLinks?.thumbnail || '',
+        image: movie.picture,
+        showing: movie.locations.display_name,
+        showingLink: movie.locations.url
       }));
 
       setSearchedMovies(movieData);
@@ -111,11 +114,11 @@ const SearchMovies = () => {
             return (
               <Card key={movie.movieId} border='dark'>
                 {movie.image ? (
-                  <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />
+                  <Card.Img src={movie.image} alt={`The cover for ${movie.name}`} variant='top' />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Authors: {movie.authors}</p>
+                  <Card.Title>{movie.name}</Card.Title>
+                  <p className='small'>showing: {movie.showing}</p>
                   <Card.Text>{movie.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
