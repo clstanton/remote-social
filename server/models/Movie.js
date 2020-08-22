@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
 
-const bookSchema = new Schema(
+const movieSchema = new Schema(
   {
       authors: [
         {
@@ -11,7 +11,7 @@ const bookSchema = new Schema(
         type: String,
         required: true,
       },
-      bookId: {
+      movieId: {
         type: String,
         required: true,
       },
@@ -28,4 +28,4 @@ const bookSchema = new Schema(
   }
 );
 
-module.exports = bookSchema;
+module.exports = movieSchema;

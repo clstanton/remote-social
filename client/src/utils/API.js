@@ -28,21 +28,21 @@ export const getMe = (token) => {
     });
   };
   
-  // save book data for a logged in user
-  export const saveBook = (bookData, token) => {
+  // save movie data for a logged in user
+  export const saveMovie = (movieData, token) => {
     return fetch('/api/users', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(bookData),
+      body: JSON.stringify(movieData),
     });
   };
   
-  // remove saved book data for a logged in user
-  export const deleteBook = (bookId, token) => {
-    return fetch(`/api/users/books/${bookId}`, {
+  // remove saved movie data for a logged in user
+  export const deleteMovie = (movieId, token) => {
+    return fetch(`/api/users/movies/${movieId}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${token}`,
@@ -50,8 +50,8 @@ export const getMe = (token) => {
     });
   };
   
-  // make a search to google books api
-  // https://www.googleapis.com/books/v1/volumes?q=harry+potter
+  // make a search to utelly api
+  // https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=dark+knight&country=us
   export const searchUtelly = (query) => {
     return fetch(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${query}`, {
         "method": "GET",
