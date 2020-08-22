@@ -41,13 +41,11 @@ const SearchMovies = () => {
         // weight: movie.weight,
         // : movie.volumeInfo.imageLinks?.thumbnail || '',
         image: movie.picture,
-        showing: movie.locations.display_name,
         showingLink: movie.locations.url
       }));
 
       setSearchedMovies(movieData);
       setSearchInput('');
-      
     } catch (err) {
       console.error(err);
     }
