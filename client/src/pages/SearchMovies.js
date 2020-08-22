@@ -47,6 +47,7 @@ const SearchMovies = () => {
 
       setSearchedMovies(movieData);
       setSearchInput('');
+      
     } catch (err) {
       console.error(err);
     }
@@ -118,7 +119,8 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.name}</Card.Title>
-                  <p className='small'>showing: {movie.showing}</p>
+                  <p className='small'>Showing on: {movie.showing}
+                  </p>
                   <Card.Text>{movie.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button

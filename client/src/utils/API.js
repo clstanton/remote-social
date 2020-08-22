@@ -61,3 +61,8 @@ export const getMe = (token) => {
         }
     });
   };
+
+// Can we incorporate a second API for more info?
+  export const searchTMDB = (query) => {
+    return fetch(`https://api.themoviedb.org/3/search/movie?api_key=24015e7692b811d33d1c989cbd42b043&query=${query}`)
+  };
