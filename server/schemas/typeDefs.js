@@ -15,6 +15,9 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
+        friendCount: Int
+        comments: [Comment]
+        friends: [User]
         movieCount: Int
         savedMovies: [Movie]
     }
@@ -28,9 +31,29 @@ const typeDefs = gql`
         link: String
     }
 
+    type Comment {
+        _id: ID
+        commentText: String
+        createdAt: String
+        username: String
+        reactionCount: Int
+        reactions: [Reaction]
+      }
+
+    type Reaction {
+        _id: ID
+        reactionBody: String
+        createdAt: String
+        username: String
+      }
+
     type Query {
         me: User
-    }
+        users: [User]
+        user(username: String!): User
+        comments(username: String): [Comment]
+        comment(_id: ID!): Comment
+      }
 
     type Auth {
         token: ID

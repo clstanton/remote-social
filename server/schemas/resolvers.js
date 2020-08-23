@@ -1,4 +1,4 @@
-const { User, Movie } = require('../models');
+const { User, Comment, Movie } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -8,12 +8,41 @@ const resolvers = {
       if(context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
+          .populate('comments')
+          .populate('friends');
       
-      return userData;
+        return userData;
       }
 
       throw new AuthenticationError('Not logged in');
-    }
+    },
+
+    // get all comments
+    comments: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Comment.find(params).sort({ createdAt: -1 });
+    },
+  
+    // get one comment
+    comment: async (parent, { _id }) => {
+        return Comment.findOne({ _id });
+    },
+
+    // get all users
+    users: async () => {
+      return User.find()
+        .select('-__v -password')
+        .populate('friends')
+        .populate('comments');
+    },
+    
+    // get a user by username
+    user: async (parent, { username }) => {
+      return User.findOne({ username })
+        .select('-__v -password')
+        .populate('friends')
+        .populate('comments');
+    },
   },
 
   Mutation: {
