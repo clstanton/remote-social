@@ -32,7 +32,16 @@ const SearchMovies = () => {
 
       const { results } = await response.json();
 
-      const movieData = results.map((movie) => ({
+      const filteredData = results.filter((movie) => {
+        if (movie.poster_path) {
+          return movie;
+        }
+      });
+
+      console.log(filteredData);
+
+      const movieData = filteredData.map((movie) => (
+        {
         movieId: movie.id,
         vote: movie.vote_average, //|| ['No providers to display'],
         name: movie.title,
