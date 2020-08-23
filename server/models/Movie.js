@@ -2,11 +2,9 @@ const { Schema } = require('mongoose');
 
 const movieSchema = new Schema(
   {
-      release: [
-        {
+      release: {
           type: String,
-        },
-      ],
+      },
       overview: {
         type: String,
         required: true,
@@ -19,7 +17,7 @@ const movieSchema = new Schema(
         type: String,
       },
       vote: {
-        type: String,
+        type: Number,
       },
       name: {
         type: String,
