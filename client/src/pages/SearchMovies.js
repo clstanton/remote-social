@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-import { searchUtelly, searchTMDB } from '../utils/API';
+import { searchTMDB } from '../utils/API';
 import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 import { SAVE_MOVIE } from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';

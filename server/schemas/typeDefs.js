@@ -4,11 +4,11 @@ const typeDefs = gql`
   
     type Movie {
         movieId: String
-        authors: [String]
-        description: String
-        title: String
+        vote: String
+        overview: String
+        name: String
         image: String
-        link: String
+        release: String
     }
 
     type User {
@@ -21,11 +21,11 @@ const typeDefs = gql`
   
     input movieInput {
         movieId: String
-        authors: [String]
-        description: String
-        title: String
+        vote: String
+        overview: String
+        name: String
         image: String
-        link: String
+        release: String
     }
 
     type Query {

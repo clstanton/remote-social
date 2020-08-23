@@ -2,12 +2,12 @@ const { Schema } = require('mongoose');
 
 const movieSchema = new Schema(
   {
-      authors: [
+      release: [
         {
           type: String,
         },
       ],
-      description: {
+      overview: {
         type: String,
         required: true,
       },
@@ -18,10 +18,10 @@ const movieSchema = new Schema(
       image: {
         type: String,
       },
-      link: {
+      vote: {
         type: String,
       },
-      title: {
+      name: {
         type: String,
         required: true,
       },

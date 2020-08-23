@@ -11,11 +11,11 @@ export const ADD_USER = gql`
                 movieCount
                 savedMovies {
                     movieId
-                    title
-                    description
-                    authors
+                    name
+                    vote
+                    overview
                     image
-                    link
+                    release
                 }
             }
         }
@@ -33,15 +33,15 @@ export const LOGIN_USER = gql`
                 movieCount
                 savedMovies {
                     movieId
-                    title
-                    description
-                    authors
-                    link
+                    name
+                    vote
+                    overview
                     image
-         }
-       }
-     }
-   }
+                    release
+                }
+            }
+        }
+    }
 `;
 
 export const SAVE_MOVIE = gql`
@@ -52,11 +52,11 @@ export const SAVE_MOVIE = gql`
             email
             savedMovies {
                 movieId
-                authors
+                name
+                vote
+                overview
                 image
-                description
-                title
-                link
+                release
             }
         }
     }
@@ -71,11 +71,11 @@ export const REMOVE_MOVIE = gql`
             movieCount
             savedMovies {
                 movieId
-                authors
+                name
+                vote
+                overview
                 image
-                description
-                title
-                link
+                release
             }
         }
     }
