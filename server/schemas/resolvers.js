@@ -46,6 +46,12 @@ const resolvers = {
   },
 
   Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -64,12 +70,49 @@ const resolvers = {
       return { token, user };
     },
 
-    addUser: async (parent, args) => {
-        const user = await User.create(args);
-        const token = signToken(user);
-  
-        return { token, user };
-      },
+    addComment: async (parent, args, context) => {
+      if (context.user) {
+        const comment = await Comment.create({ ...args, username: context.user.username });
+    
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { comments: comment._id } },
+          { new: true }
+        );
+    
+        return comment;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    addReaction: async (parent, { commentId, reactionBody }, context) => {
+      if (context.user) {
+        const updatedComment = await Comment.findOneAndUpdate(
+          { _id: commentId },
+          { $push: { reactions: { reactionBody, username: context.user.username } } },
+          { new: true, runValidators: true }
+        );
+    
+        return updatedComment;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    addFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { friends: friendId } },
+          { new: true }
+        ).populate('friends');
+    
+        return updatedUser;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    },
   
     saveMovie: async (parent, { input }, context) => {
       if (context.user) {
