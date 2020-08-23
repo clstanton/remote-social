@@ -128,7 +128,9 @@ const SearchMovies = () => {
                   <Card.Title>{movie.name}</Card.Title>
                   <p className='small'>Rating: {movie.vote} </p>
                   <p className='small'>Release Date: {movie.release} </p>
-                  <p className='small'>Overview: {movie.overview} </p>
+                  <div className="scrollbar overflow-auto movie-description">
+                    <p className='small card-text'>Overview: {movie.overview} </p>
+                  </div>
                   <Card.Text>{movie.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
@@ -136,7 +138,7 @@ const SearchMovies = () => {
                       className='btn-block btn-info'
                       onClick={() => handleSaveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
-                        ? 'Movie already saved!'
+                        ? 'Saved!'
                         : 'Save this Movie!'}
                     </Button>
                   )}
