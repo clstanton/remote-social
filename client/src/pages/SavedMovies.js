@@ -63,6 +63,22 @@ const SavedMovies = () => {
     return <h2>LOADING...</h2>;
   }
 
+  function countMovies () {
+    if (userData.movieCount) {
+      let grammarMovies = 'movies';
+      if (userData.movieCount === 1) {
+        grammarMovies = 'movie';
+      }
+      else {
+        grammarMovies = 'movies';
+      }
+      return <h2>Viewing {userData.movieCount} saved {grammarMovies}.</h2>;
+    }
+    else {
+    return <h2>You have no saved movies!</h2>;
+    }
+  }
+
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -71,11 +87,12 @@ const SavedMovies = () => {
         </Container>
       </Jumbotron>
       <Container>
-        <h2>
-          {userData.savedMovies.length
-            ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
+        {/* <h2>
+          {userData.movieCount
+            ? `Viewing ${userData.movieCount} saved ${userData.movieCount === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
-        </h2>
+        </h2> */}
+        {countMovies()}
         <CardColumns>
           {userData.savedMovies.map((movie) => {
             return (
