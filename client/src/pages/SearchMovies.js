@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-import { searchUtelly } from '../utils/API';
+import { searchUtelly, searchTMDB } from '../utils/API';
 import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 import { SAVE_MOVIE } from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
@@ -24,7 +24,7 @@ const SearchMovies = () => {
     }
 
     try {
-      const response = await searchUtelly(searchInput);
+      const response = await searchTMDB(searchInput);
 
       if (!response.ok) {
         throw new Error('Something went wrong!');
@@ -34,14 +34,14 @@ const SearchMovies = () => {
 
       const movieData = results.map((movie) => ({
         movieId: movie.id,
-        // picture: movie.picture, //|| ['No providers to display'],
-        name: movie.name,
-        // locations: movie.locations,
-        // provider: movie.provider,
+        vote: movie.vote_average, //|| ['No providers to display'],
+        name: movie.title,
+        overview: movie.overview,
+        release: movie.release_date,
         // weight: movie.weight,
         // : movie.volumeInfo.imageLinks?.thumbnail || '',
-        image: movie.picture,
-        showingLink: movie.locations.url
+        image: 'https://image.tmdb.org/t/p/w500' + movie.poster_path || '',
+        // showingLink: movie.locations.url
       }));
 
       setSearchedMovies(movieData);
@@ -117,8 +117,9 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.name}</Card.Title>
-                  <p className='small'>Showing on: {movie.showing}
-                  </p>
+                  <p className='small'>Rating: {movie.vote} </p>
+                  <p className='small'>Release Date: {movie.release} </p>
+                  <p className='small'>Overview: {movie.overview} </p>
                   <Card.Text>{movie.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
