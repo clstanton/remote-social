@@ -52,15 +52,15 @@ export const getMe = (token) => {
   
   // make a search to utelly api
   // https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=dark+knight&country=us
-  export const searchUtelly = (query) => {
-    return fetch(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${query}`, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-            "x-rapidapi-key": "9309dd3a49msh8d5ab074c47721ap1cdb7ajsne9778b043bb9"
-        }
-    });
-  };
+  // export const searchUtelly = (query) => {
+  //   return fetch(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${query}`, {
+  //       "method": "GET",
+  //       "headers": {
+  //           "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+  //           "x-rapidapi-key": "9309dd3a49msh8d5ab074c47721ap1cdb7ajsne9778b043bb9"
+  //       }
+  //   });
+  // };
 
 // Can we incorporate a second API for more info?
   export const searchTMDB = (query) => {

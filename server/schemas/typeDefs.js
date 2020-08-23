@@ -4,7 +4,7 @@ const typeDefs = gql`
   
     type Movie {
         movieId: String
-        vote: String
+        vote: Float
         overview: String
         name: String
         image: String
@@ -21,7 +21,7 @@ const typeDefs = gql`
   
     input movieInput {
         movieId: String
-        vote: String
+        vote: Float
         overview: String
         name: String
         image: String
