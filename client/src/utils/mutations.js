@@ -63,7 +63,7 @@ export const SAVE_MOVIE = gql`
 `;
 
 export const REMOVE_MOVIE = gql`
-    mutation removeMovie($movieId: String!) {
+    mutation removeMovie($movieId: Int!) {
         removeMovie(movieId: $movieId) {
             _id
             username
