@@ -1,6 +1,6 @@
 import React from 'react';
 import Auth from '../utils/auth';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
 import { removeMovieId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { REMOVE_MOVIE } from '../utils/mutations';
@@ -72,14 +72,14 @@ const SavedMovies = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedMovies.length
-            ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
+          {userData.movieCount
+            ? `Viewing ${userData.movieCount} saved ${userData.movieCount === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
         </h2>
         <CardColumns>
           {userData.savedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border='dark'>
+              <Card key={movie.movieId} md={12} border='dark'>
                 {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.name}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.name}</Card.Title>
