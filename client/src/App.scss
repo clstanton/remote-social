@@ -46,8 +46,14 @@ body {
   color: $color-secondary;
 }
 
+.saved-heading {
+  text-align: center;
+  margin: 15px auto;
+  font-weight: 200;
+}
+
 .movie-description {
-  height: 120px;
+  max-height: 532px;
 }
 
 .card-text {
