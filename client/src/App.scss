@@ -5,6 +5,7 @@ $color-text: rgb(207, 207, 207);
 body {
   background: $color-primary;
   color: $color-text;
+  padding-bottom: 50px;
 }
 
 .nav-bar {
@@ -104,6 +105,19 @@ body {
 
 .card-body {
   color: rgb(63, 63, 63);
+}
+
+.card {
+  max-width: 400px;
+  min-width: 350px;
+  margin: 15px auto;
+}
+
+.card:hover {
+
+  cursor: pointer;
+
+  transform: scale(1.03);;
 }
 
 @media only screen and (max-width: 734px) {

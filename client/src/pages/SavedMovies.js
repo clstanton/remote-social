@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState, setSta } from 'react';
 import Auth from '../utils/auth';
 import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
 import { removeMovieId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { GET_USER } from '../utils/queries';
+import Toggle from '../components/toggleInfo';
 
 const SavedMovies = () => {
   const [removeMovie, { error }] = useMutation(REMOVE_MOVIE);
+  const [toggle, setToggle] = useState(false);
 
   const { loading, data } = useQuery(GET_USER);
   const userData = data?.me || {};
+
+  const clickHandler = (toggle) => {
+    setToggle(!toggle);
+  };
 
   // useEffect(() => {
   //   const getUserData = async () => {
@@ -79,21 +85,7 @@ const SavedMovies = () => {
         <CardColumns>
           {userData.savedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} md={12} border='dark'>
-                {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.name}`} variant='top' /> : null}
-                <Card.Body>
-                  <Card.Title>{movie.name}</Card.Title>
-                  <p className='small'>Rating: {movie.vote} </p>
-                  <p className='small'>Release Date: {movie.release} </p>
-                  <div className="scrollbar overflow-auto movie-description">
-                    <p className='small card-text'>Overview: {movie.overview} </p>
-                  </div>
-                  <Card.Text>{movie.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.movieId)}>
-                    Delete this Movie!
-                  </Button>
-                </Card.Body>
-              </Card>
+              <Toggle movie={movie} />
             );
           })}
         </CardColumns>
