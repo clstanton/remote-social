@@ -1,18 +1,37 @@
 import React, { useState, setSta } from 'react';
 import Auth from '../utils/auth';
 import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
+//import { Link } from 'react-router-dom';
 import { removeMovieId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { REMOVE_MOVIE } from '../utils/mutations';
-import { GET_USER } from '../utils/queries';
+import { GET_USER, QUERY_COMMENTS, QUERY_USER, QUERY_ME_BASIC } from '../utils/queries';
 import Toggle from '../components/toggleInfo';
+import CommentList from '../components/CommentList';
+import FriendList from '../components/FriendList';
+import { useParams } from 'react-router-dom';
+
 
 const SavedMovies = () => {
   const [removeMovie, { error }] = useMutation(REMOVE_MOVIE);
   const [toggle, setToggle] = useState(false);
 
+  //const { data: userData } = useQuery(QUERY_ME_BASIC);
   const { loading, data } = useQuery(GET_USER);
   const userData = data?.me || {};
+
+  //const { loading, data } = useQuery(QUERY_COMMENTS);
+  const comments = data?.comments || [];
+    console.log(comments);
+  
+  const { username: userParam } = useParams();
+  //const { loading, data } = useQuery(QUERY_USER, {
+    //variables: { username: userParam }
+  //});
+  const user = data?.user || {};
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const clickHandler = (toggle) => {
     setToggle(!toggle);
@@ -85,6 +104,37 @@ const SavedMovies = () => {
           })}
         </CardColumns>
       </Container>
+      {/* //HOME */}
+      <main>
+        <div className="flex-row justify-space-between">
+          <div className={`col-12 mb-3`}>
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <CommentList comments={comments} title="Some Feed for Thought(s)..." />
+            )}
+          </div>
+        </div>
+        <div>
+          <div className="flex-row mb-3">
+            <h2 className="bg-dark text-secondary p-3 display-inline-block">
+              Viewing {user.username}'s profile.
+            </h2>
+          </div>
+          <div className="flex-row justify-space-between mb-3">
+            {/*<div className="col-12 mb-3 col-lg-8">
+              <CommentList comments={user.comments} title={`${user.username}'s thoughts...`} />
+            </div>*/}
+            <div className="col-12 col-lg-3 mb-3">
+              <FriendList
+                username={user.username}
+                friendCount={user.friendCount}
+                friends={user.friends}
+              />
+            </div>
+        </div>
+        </div>
+      </main>
     </>
   );
 };
