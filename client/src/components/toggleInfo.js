@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Button } from 'react-bootstrap';
+// import SaveButton from './Buttons/SaveButton';
+import DeleteButton from './Buttons/DeleteButton';
 
 export class Toggle extends Component {
 
@@ -11,7 +13,6 @@ export class Toggle extends Component {
     };
 
     Toggle = () => {
-        console.log('122ej3bejkbfroivhervr WOEKING WORKING');
         this.setState((currentState) => ({
             clicked: !currentState.clicked, 
         }));
@@ -23,9 +24,9 @@ export class Toggle extends Component {
 
         return (
             <div>
-                <Card key={movie.movieId} md={12} border='dark' onClick={this.Toggle}>
+                <Card key={movie.movieId} md={12}  onClick={this.Toggle}>
                     {!this.state.clicked &&
-                    <Card.Img src={movie.image} alt={`The cover for ${movie.name}`} variant='top' />
+                    <Card.Img src={movie.image} alt={`The cover for ${movie.name}`}  />
                     }
                     {this.state.clicked && 
                     <Card.Body>
@@ -36,9 +37,8 @@ export class Toggle extends Component {
                         <p className='small card-text'>Overview: {movie.overview} </p>
                     </div>
                     <Card.Text>{movie.description}</Card.Text>
-                    <Button className='btn-block btn-danger' >
-                        Delete this Movie!
-                    </Button>
+                    {/* need to fix the delete/send to next component */}
+                    <DeleteButton />
                     </Card.Body>
                     }
                 </Card>
