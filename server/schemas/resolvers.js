@@ -1,6 +1,7 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Comment, Movie } = require('../models');
 const { signToken } = require('../utils/auth');
-const { AuthenticationError } = require('apollo-server-express');
+
 
 const resolvers = {
   Query: {
@@ -9,8 +10,9 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('comments')
-          .populate('friends');
-      
+          .populate('friends')
+          .populate('movies');
+          
         return userData;
       }
 
@@ -33,7 +35,8 @@ const resolvers = {
       return User.find()
         .select('-__v -password')
         .populate('friends')
-        .populate('comments');
+        .populate('comments')
+        .populate('movies');
     },
     
     // get a user by username
@@ -41,7 +44,8 @@ const resolvers = {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('friends')
-        .populate('comments');
+        .populate('comments')
+        .populate('movies');
     },
   },
 

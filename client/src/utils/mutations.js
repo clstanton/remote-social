@@ -30,15 +30,32 @@ export const LOGIN_USER = gql`
                 _id
                 username
                 email
-                movieCount
-                savedMovies {
-                    movieId
-                    name
-                    vote
-                    overview
-                    image
-                    release
+            }
+            friendCount
+            comments {
+                _id
+                commentText
+                createdAt
+                reactionCount
+                reactions {
+                    _id
+                    createdAt
+                    reactionBody
+                    username
                 }
+            }
+            friends {
+                _id
+                username
+            }
+            movieCount
+            savedMovies {
+                movieId
+                name
+                vote
+                overview
+                image
+                release
             }
         }
     }

@@ -18,6 +18,24 @@ export const QUERY_COMMENTS = gql`
   }
 `;
 
+export const QUERY_COMMENT = gql`
+  query comment($id: ID!) {
+    comment(_id: $id) {
+      _id
+      commentText
+      createdAt
+      username
+      reactionCount
+      reactions {
+        _id
+        createdAt
+        username
+        reactionBody
+      }
+    }
+  }
+`;
+
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
@@ -45,6 +63,23 @@ export const GET_USER = gql`
         _id
         username
         email
+        friendCount
+        comments {
+          _id
+          commentText
+          createdAt
+          reactionCount
+          reactions {
+            _id
+            createdAt
+            reactionBody
+            username
+          }
+        }
+        friends {
+          _id
+          username
+        }
         movieCount
         savedMovies {
               movieId
@@ -81,6 +116,15 @@ export const QUERY_ME = gql`
         _id
         username
       }
+      movieCount
+        savedMovies {
+              movieId
+              name
+              vote
+              overview
+              image
+              release
+        }
     }
   }
 `;
@@ -91,6 +135,7 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
+      movieCount
       friendCount
       friends {
         _id

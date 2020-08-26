@@ -1,11 +1,11 @@
-import React, { useState, setSta } from 'react';
+import React, { useState, setState } from 'react';
 import Auth from '../utils/auth';
 import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { removeMovieId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { REMOVE_MOVIE, ADD_FRIEND } from '../utils/mutations';
-import { GET_USER, QUERY_COMMENTS, QUERY_USER, QUERY_ME_BASIC } from '../utils/queries';
+import { QUERY_COMMENTS, GET_USER, QUERY_ME_BASIC, QUERY_ME, QUERY_USER } from '../utils/queries';
 import Toggle from '../components/toggleInfo';
 import CommentList from '../components/CommentList';
 import FriendList from '../components/FriendList';
@@ -16,19 +16,11 @@ const SavedMovies = () => {
   const [removeMovie, { error }] = useMutation(REMOVE_MOVIE);
   const [toggle, setToggle] = useState(false);
   const [addFriend] = useMutation(ADD_FRIEND);
-
-  //const { data: userData } = useQuery(QUERY_ME_BASIC);
   const { loading, data } = useQuery(GET_USER, QUERY_COMMENTS);
   const userData = data?.me || {};
-
-  //const { loading, data } = useQuery(QUERY_COMMENTS);
   const comments = data?.comments || [];
     console.log(comments);
-  
   const { username: userParam } = useParams();
-  //const { loading, data } = useQuery(QUERY_USER, {
-    //variables: { username: userParam }
-  //});
   const user = data?.user || {};
   if (loading) {
     return <div>Loading...</div>;
@@ -37,6 +29,16 @@ const SavedMovies = () => {
   const clickHandler = (toggle) => {
     setToggle(!toggle);
   };
+  //const { data: userData } = useQuery(QUERY_ME_BASIC);
+  //const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    //variables: { username: userParam }
+  //});
+  //const { loading, data } = useQuery(QUERY_COMMENTS);
+  //const { loading, data } = useQuery(QUERY_USER, {
+    //variables: { username: userParam }
+  //});
+  //const user = data?.me || data?.user || {};
+  
 
   // useEffect(() => {
   //   const getUserData = async () => {
@@ -99,8 +101,6 @@ const SavedMovies = () => {
     return <h2>LOADING...</h2>;
   }
 
- 
-
   return (
     <>
       <Container>
@@ -117,7 +117,6 @@ const SavedMovies = () => {
           })}
         </CardColumns>
       </Container>
-      {/* //HOME */}
       <main>
         <div className="flex-row justify-space-between">
           <div className={`col-12 mb-3`}>
@@ -133,7 +132,8 @@ const SavedMovies = () => {
             <h2 className="bg-dark text-secondary p-3 display-inline-block">
               Viewing {userParam ? `${user.username}'s` : 'your'} profile.
             </h2>
-
+          </div>
+          <div>
             <button className="btn ml-auto" onClick={handleClick}>
               Add Friend
             </button>

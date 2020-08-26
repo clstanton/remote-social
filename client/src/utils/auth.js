@@ -21,11 +21,14 @@ class AuthService {
       const decoded = decode(token);
       if (decoded.exp < Date.now() / 1000) {
         return true;
-      } else return false;
+      } else {
+        return false;
+      }
     } catch (err) {
       return false;
     }
   }
+  
   // retrieve token from localStorage
   getToken() {
     // Retrieves the user token from localStorage
