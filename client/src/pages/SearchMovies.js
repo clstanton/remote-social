@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 import { Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import { searchTMDB } from '../utils/API';
-import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
-import { SAVE_MOVIE } from '../utils/mutations';
-import { useMutation } from '@apollo/react-hooks';
+// import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
+// import { SAVE_MOVIE } from '../utils/mutations';
+// import { useMutation } from '@apollo/react-hooks';
 import Homepage from '../components/Homepage';
 import SearchForm from '../components/SearchForm';
 import Toggle from '../components/toggleInfo';
 
 const SearchMovies = () => {
-  const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
+  //const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
   const [searchedMovies, setSearchedMovies] = useState([]);
   //const [searchInput, setSearchInput] = useState('');
-  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
-
-  useEffect(() => {
-    return () => saveMovieIds(savedMovieIds);
-  });
+  // const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   const handleFormSubmit = async (event, searchInput) => {
     event.preventDefault();
@@ -63,29 +59,6 @@ const SearchMovies = () => {
     }
   };
 
-  const handleSaveMovie = async (movieId) => {
-    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
-
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const { data } = await saveMovie({
-        variables: { input: movieToSave }
-      });
-
-      if (error) {
-        throw new Error('Something went wrong!');
-      }
-
-      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   return (
     <>
@@ -100,7 +73,7 @@ const SearchMovies = () => {
         <CardColumns>
           {searchedMovies.map((movie) => {
             return (
-              <Toggle movie={movie} />
+              <Toggle movie={movie} searchOrLibProp={true} searchedMovies={searchedMovies} />
             );
           })}
         </CardColumns>

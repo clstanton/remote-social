@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { Card, Button } from 'react-bootstrap';
 // import SaveButton from './Buttons/SaveButton';
 import DeleteButton from './Buttons/DeleteButton';
+import SaveButton from './Buttons/SaveButton';
 
 export class Toggle extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             clicked: false
         };
     };
+
 
     Toggle = () => {
         this.setState((currentState) => ({
@@ -21,6 +22,7 @@ export class Toggle extends Component {
     render()     
     {
         const movie = this.props.movie;
+        const searchedMovies = this.state.searchedMovies
 
         return (
             <div>
@@ -38,7 +40,8 @@ export class Toggle extends Component {
                     </div>
                     <Card.Text>{movie.description}</Card.Text>
                     {/* need to fix the delete/send to next component */}
-                    <DeleteButton />
+                    {this.props.searchOrLibProp && <SaveButton movie={movie} props={searchedMovies} />}
+                    {!this.props.searchOrLibProp && <DeleteButton movie={movie} />}
                     </Card.Body>
                     }
                 </Card>

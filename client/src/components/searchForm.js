@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
-export class searchForm extends Component {
+export class SearchForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,4 +55,4 @@ export class searchForm extends Component {
     }
 }
 
-export default searchForm;
+export default SearchForm;

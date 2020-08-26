@@ -58,8 +58,12 @@ body {
   font-weight: 200;
 }
 
+.saved-heading {
+  margin-top: 60px;
+}
+
 .movie-description {
-  max-height: 532px;
+  height: 200px;
 }
 
 .card-text {
@@ -111,7 +115,7 @@ body {
 }
 
 .card-title {
-  height: 48px;
+  height: 50px;
 }
 
 .card-body {
@@ -127,6 +131,7 @@ body {
   max-width: 300px;
   min-width: 250px;
   border: none;
+  overflow: hidden;
 }
 
 .card:hover {

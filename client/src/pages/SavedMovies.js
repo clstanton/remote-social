@@ -72,7 +72,7 @@ const SavedMovies = () => {
   return (
     <>
       <Container>
-        <h2 className="results-heading">
+        <h2 className="results-heading saved-heading">
           {userData.movieCount
             ? `Viewing ${userData.movieCount} saved ${userData.movieCount === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
