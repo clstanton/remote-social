@@ -23,6 +23,18 @@ const userSchema = new Schema(
     },
     // set savedMovies to be an array of data that adheres to the movieSchema
     savedMovies: [movieSchema],
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+      }
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
   },
   // set this to use virtual below
   {

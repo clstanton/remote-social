@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
-//import NoMatch from './pages/NoMatch';
+import NoMatch from './pages/NoMatch';
 //import SingleThought from './pages/SingleThought';
 import './App.scss';
 //import Login from './pages/Login';
@@ -39,7 +39,7 @@ function App() {
               <Route exact path="/comment/:id" component={SingleComment} /> */}
               <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
 
-              {/*<Route component={NoMatch} />*/}
+              <Route component={NoMatch} />
             </Switch>
           </>
         </Router>
