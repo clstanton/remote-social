@@ -6,7 +6,7 @@ import { searchTMDB } from '../utils/API';
 // import { SAVE_MOVIE } from '../utils/mutations';
 // import { useMutation } from '@apollo/react-hooks';
 import Homepage from '../components/Homepage';
-import SearchForm from '../components/SearchForm';
+import SearchForm from '../components/searchForm';
 import Toggle from '../components/toggleInfo';
 
 const SearchMovies = () => {
