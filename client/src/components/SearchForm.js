@@ -42,7 +42,7 @@ class SearchForm extends Component {
                             />
                         </Col>
                         <Col xs={12} md={4}>
-                            <Button type='submit' variant="btn-danger"  size='lg' className="btn-outline">
+                            <Button type='submit'  size='lg' >
                             Submit Search
                             </Button>
                         </Col>
