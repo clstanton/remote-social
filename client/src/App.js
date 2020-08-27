@@ -29,10 +29,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
         <Router>
-          <div className="flex-column justify-flex-start min-100-vh">
-          {/*<>*/}
+          {/*<div className="flex-column justify-flex-start min-100-vh">*/}
+          <>
             <Navbar />
-            <div className="container">
+            {/*<div className="container">*/}
               <Switch>
                 <Route exact path='/' component={SearchMovies} />
                 <Route exact path='/saved' component={SavedMovies} />
@@ -43,9 +43,9 @@ function App() {
 
                 <Route component={NoMatch} />
               </Switch>
-            </div>
-          {/*</>*/}
-          </div> 
+              {/*</div>*/}
+          </>
+          {/*</div> */}
         </Router>
     </ApolloProvider>
   );
