@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Container, Button, Card, CardColumns } from 'react-bootstrap';
 import { searchTMDB } from '../utils/API';
 import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 import { SAVE_MOVIE } from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
+import Homepage from '../components/Homepage';
+import SearchForm from '../components/SearchForm'
 
 const SearchMovies = () => {
   const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  //const [searchInput, setSearchInput] = useState('');
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
   });
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event, searchInput) => {
     event.preventDefault();
 
     if (!searchInput) {
@@ -54,7 +56,7 @@ const SearchMovies = () => {
       }));
 
       setSearchedMovies(movieData);
-      setSearchInput('');
+      // setSearchInput('');
     } catch (err) {
       console.error(err);
     }
@@ -86,41 +88,18 @@ const SearchMovies = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Keep Track of Movies Your Way.</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name='searchInput'
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='The Dark Knight'
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
-        </Container>
-      </Jumbotron>
+      {!searchedMovies.length && <Homepage handleFormSubmit={handleFormSubmit} />}
+      {searchedMovies.length && <SearchForm handleFormSubmit={handleFormSubmit} />}
 
       <Container>
-        <h2>
-          {searchedMovies.length
-            ? `Viewing ${searchedMovies.length} results:`
-            : 'Search for a movie to begin'}
+        <h2 className="results-heading">
+          {searchedMovies.length > 0 &&
+            `Viewing ${searchedMovies.length} results:`}
         </h2>
         <CardColumns>
           {searchedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border='dark'>
+              <Card key={movie.movieId}>
                 {movie.image ? (
                   <Card.Img src={movie.image} alt={`The cover for ${movie.name}`} variant='top' />
                 ) : null}
