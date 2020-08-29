@@ -1,16 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
-    type Movie {
-        movieId: Int
-        vote: Float
-        overview: String
-        name: String
-        image: String
-        release: String
-    }
-
     type User {
         _id: ID
         username: String
@@ -20,6 +10,15 @@ const typeDefs = gql`
         friends: [User]
         movieCount: Int
         savedMovies: [Movie]
+    }
+
+    type Movie {
+        movieId: Int
+        vote: Float
+        overview: String
+        name: String
+        image: String
+        release: String
     }
   
     input movieInput {
@@ -55,11 +54,6 @@ const typeDefs = gql`
         comment(_id: ID!): Comment
       }
 
-    type Auth {
-        token: ID!
-        user: User
-    }
-
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
@@ -68,6 +62,11 @@ const typeDefs = gql`
         addFriend(friendId: ID!): User
         saveMovie(input: movieInput): User
         removeMovie(movieId: Int!): User
+    }
+
+    type Auth {
+        token: ID!
+        user: User
     }
 `;
 

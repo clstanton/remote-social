@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
+import Comments from './pages/Comments';
 import './App.scss';
 
 const client = new ApolloClient({
@@ -29,6 +30,7 @@ function App() {
             <Switch>
               <Route exact path='/' component={SearchMovies} />
               <Route exact path='/saved' component={SavedMovies} />
+              <Route exact path='/comments' component={Comments} />
               <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
             </Switch>
           </>
