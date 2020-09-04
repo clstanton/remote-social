@@ -10,6 +10,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      trim: true
     },
     email: {
       type: String,
@@ -19,10 +20,22 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     // set savedMovies to be an array of data that adheres to the movieSchema
     savedMovies: [movieSchema],
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+      }
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
   },
   // set this to use virtual below
   {
@@ -50,6 +63,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
 // when we query a user, we'll also get another field called `movieCount` with the number of saved movies we have
 userSchema.virtual('movieCount').get(function () {
   return this.savedMovies.length;
+});
+
+userSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
 });
 
 const User = model('User', userSchema);
