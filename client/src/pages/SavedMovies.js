@@ -5,6 +5,7 @@ import { removeMovieId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { GET_USER } from '../utils/queries';
+import SocialProfile from '../components/SocialProfile'
 
 const SavedMovies = () => {
   const [removeMovie, { error }] = useMutation(REMOVE_MOVIE);
@@ -67,6 +68,9 @@ const SavedMovies = () => {
             );
           })}
         </CardColumns>
+      </Container>
+      <Container>
+        <SocialProfile />
       </Container>
     </>
   );
