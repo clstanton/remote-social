@@ -16,7 +16,7 @@ const CommentList = ({ comments, title }) => {
           <div key={comment._id} className="card mb-3">
             <p className="card-header">
               <Link
-                to={`/profile/${comment.username}`}
+                to={`/saved/${comment.username}`}
                 style={{ fontWeight: 700 }}
                 className="text-light"
               >
