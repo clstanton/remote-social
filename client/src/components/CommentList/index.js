@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CommentList = ({ comments, title }) => {
-  if (comments) {if (comments.length){
+  //if (comments) {if (comments.length){
+  if (!comments) {
   //if (!comments.length) {
     return <h3>No Comments Yet</h3>;
-  }}
+  }
 
   return (
     <div>
@@ -36,6 +37,6 @@ const CommentList = ({ comments, title }) => {
         ))}
     </div>
   );
-};
+}
 
 export default CommentList;

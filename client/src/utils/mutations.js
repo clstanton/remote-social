@@ -58,6 +58,36 @@ export const ADD_FRIEND = gql`
   }
 `;
 
+export const ADD_COMMENT = gql`
+  mutation addComment($commentText: String!) {
+    addComment(commentText: $commentText) {
+      _id
+      commentText
+      createdAt
+      username
+      reactionCount
+      reactions {
+        _id
+      }
+    }
+  }
+`;
+
+export const ADD_REACTION = gql`
+  mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
+    addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
+      _id
+      reactionCount
+      reactions {
+        _id
+        reactionBody
+        createdAt
+        username
+      }
+    }
+  }
+`;
+
 export const SAVE_MOVIE = gql`
     mutation saveMovie($input: movieInput!) {
         saveMovie(input: $input) {
