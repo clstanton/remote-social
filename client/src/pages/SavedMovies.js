@@ -5,6 +5,7 @@ import { removeMovieId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { GET_USER } from '../utils/queries';
+import SocialProfile from '../components/SocialProfile'
 
 const SavedMovies = () => {
   const [removeMovie, { error }] = useMutation(REMOVE_MOVIE);
@@ -41,11 +42,16 @@ const SavedMovies = () => {
   return (
     <>
       <Container>
+        <h2 className="results-heading saved-heading"></h2>
+        <SocialProfile />
+      </Container>
+      <Container>
         <h2 className="results-heading saved-heading">
           {userData.movieCount
             ? `Viewing ${userData.movieCount} saved ${userData.movieCount === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
         </h2>
+        
         <CardColumns>
           {userData.savedMovies.map((movie) => {
             return (
