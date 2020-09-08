@@ -7,6 +7,7 @@ import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
 import AllComments from './pages/AllComments';
 import SingleComment from './pages/SingleComment';
+import NoMatch from './pages/NoMatch';
 import './App.scss';
 
 const client = new ApolloClient({
@@ -30,12 +31,11 @@ function App() {
             <Navbar />
             <Switch>
               <Route exact path='/' component={SearchMovies} />
-              <Route exact path='/saved' component={SavedMovies} />
               <Route exact path='/saved/:username?' component={SavedMovies} />
               <Route exact path='/comments' component={AllComments} />
-              <Route exact path="/comment" component={SingleComment} />
-              <Route exact path="/comment/:id" component={SingleComment} />
-              <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+              <Route exact path='/comment/:id' component={SingleComment} />
+              <Route component={NoMatch} />
+              {/*<Route render={() => <h1 className='display-2'>Wrong page!</h1>} />*/}
             </Switch>
           </>
         </Router>

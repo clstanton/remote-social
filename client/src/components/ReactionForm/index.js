@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import { ADD_REACTION } from '../../utils/mutations';
+import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 const ReactionForm = ({ commentId }) => {
     const [reactionBody, setBody] = useState('');
@@ -13,28 +16,22 @@ const ReactionForm = ({ commentId }) => {
     };
 
     const handleFormSubmit = async event => {
-        event.preventDefault();
-            //setBody('');
-            //setCharacterCount(0);
-        try {
-            // add reaction to database
-            await addReaction({
-                variables: { reactionBody, commentId }
-            });
-            
-            // clear form value
-            setBody('');
-            setCharacterCount(0);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+      event.preventDefault();
 
-    const handleFormSubmit = async event => {
-        event.preventDefault();
+      try {
+          // add reaction to comment
+          await addReaction({
+            variables: { reactionBody, commentId }
+          });
+
+          // clear form value
+          setBody('');
+          setCharacterCount(0);
+          } catch (e) {
+          console.error(e);
+          }
+      };
       
-        
-
   return (
     <div>
       <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
@@ -46,19 +43,18 @@ const ReactionForm = ({ commentId }) => {
         onSubmit={handleFormSubmit}
       >
         <textarea
-            placeholder="Here's a new comment..."
-            value={commentText}
+            placeholder="Leave a reaction to this thought..."
+            value={reactionBody}
             className="form-input col-12 col-md-9"
             onChange={handleChange}
         ></textarea>
 
-        <button className="btn col-12 col-md-3" type="submit">
+        <Button className='search-btn' type='submit' size='lg'>
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );
-};
 };
 
 export default ReactionForm;

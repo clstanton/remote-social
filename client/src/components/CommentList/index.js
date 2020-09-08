@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 const CommentList = ({ comments, title }) => {
   //if (comments) {if (comments.length){
-  if (!comments) {
   //if (!comments.length) {
+  if (!comments) {
     return <h3>No Comments Yet</h3>;
   }
 
   return (
+    <>
+    <Container>
     <div>
       <h3>{title}</h3>
       {comments &&
@@ -36,6 +39,8 @@ const CommentList = ({ comments, title }) => {
           </div>
         ))}
     </div>
+    </Container>
+    </>
   );
 }
 

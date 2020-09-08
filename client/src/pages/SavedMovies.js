@@ -42,11 +42,16 @@ const SavedMovies = () => {
   return (
     <>
       <Container>
+        <h2 className="results-heading saved-heading"></h2>
+        <SocialProfile />
+      </Container>
+      <Container>
         <h2 className="results-heading saved-heading">
           {userData.movieCount
             ? `Viewing ${userData.movieCount} saved ${userData.movieCount === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
         </h2>
+        
         <CardColumns>
           {userData.savedMovies.map((movie) => {
             return (
@@ -68,9 +73,6 @@ const SavedMovies = () => {
             );
           })}
         </CardColumns>
-      </Container>
-      <Container>
-        <SocialProfile />
       </Container>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_COMMENT } from '../../utils/mutations';
 import { QUERY_COMMENTS, QUERY_ME } from '../../utils/queries';
+import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 const CommentForm = () => {
     const [commentText, setText] = useState('');
@@ -35,7 +36,7 @@ const CommentForm = () => {
         }
       };
 
-      const handleFormSubmit = async event => {
+    const handleFormSubmit = async event => {
         event.preventDefault();
       
         try {
@@ -69,9 +70,9 @@ const CommentForm = () => {
             onChange={handleChange}
         ></textarea>
         
-        <button className="btn col-12 col-md-3" type="submit">
+        <Button className='search-btn' type='submit' size='lg'>
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );
