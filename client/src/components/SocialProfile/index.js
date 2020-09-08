@@ -10,18 +10,19 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Jumbotron, Container, CardColumns, Card, Form, Button } from 'react-bootstrap';
 
 const SocialProfile = () => {
-  const { username: userParam } = useParams();
   const [addFriend] = useMutation(ADD_FRIEND);
+  const { username: userParam } = useParams();
+
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
   //const { loading, data } = useQuery(QUERY_USER, {
-    //variables: { username: userParam }
+    variables: { username: userParam }
   });
 
   const user = data?.me || data?.user || {};
   //const user = data?.user || {};
 
   // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
-  const { data: userData } = useQuery(QUERY_ME_BASIC);
+  //const { data: userData } = useQuery(QUERY_ME_BASIC);
 
   //redirect to personal profile page if username is the logged-in user's
   //if (Auth.loggedIn() && Auth.getProfile().data.username.toLowerCase() === userParam.toLowerCase()) {
@@ -50,11 +51,9 @@ const SocialProfile = () => {
     }
   };
 
-  const loggedIn = Auth.loggedIn();
+  //const loggedIn = Auth.loggedIn();
 
   return (
-    <>
-    <Container>
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
@@ -69,7 +68,7 @@ const SocialProfile = () => {
         )}
       </div>
 
-      <div className="flex-row justify-space-between mb-3">
+      {/*<div className="flex-row justify-space-between mb-3">
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
         {loading ? (
           <div>Loading...</div>
@@ -78,7 +77,7 @@ const SocialProfile = () => {
           )}
         </div>
 
-        {loggedIn && userData ? (
+        {/*{loggedIn && userData ? (
           <div className="col-12 col-lg-3 mb-3">
             <FriendList
               username={userData.me.username}
@@ -86,25 +85,23 @@ const SocialProfile = () => {
               friends={userData.me.friends}
             />
           </div>
-        ) : null}
+        ) : null}*/}
 
-        {/*<div className="flex-row justify-space-between mb-3">
+        <div className="flex-row justify-space-between mb-3">
           <div className="col-12 mb-3 col-lg-8">
             <CommentList comments={user.comments} title={`${user.username}'s comments...`} />
-        </div>*/}
+        </div>
 
-        {/*<div className="col-12 col-lg-3 mb-3">
+        <div className="col-12 col-lg-3 mb-3">
           <FriendList
             username={user.username}
             friendCount={user.friendCount}
             friends={user.friends}
           />
-        </div>*/}
+        </div>
       </div>
       <div className="mb-3">{!userParam && <CommentForm />}</div>
     </div>
-    </Container>
-    </>
   );
 };
 
