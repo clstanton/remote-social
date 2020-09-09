@@ -2,11 +2,11 @@
 
 🔍 A MERN stack application, Remote Social is an app that lets users search for & save movies to a library while connecting with others to discuss, share, and debate..
 
-**[Deployed Application](https://still-falls-22027.herokuapp.com/)**
+**[Deployed Application](https://cryptic-gorge-35129.herokuapp.com/)**
   
 💻 Below is a screenshot of the application:
   
-![homepage](https://github.com/clstanton/remote-social/client/src/assets/screencapture-localhost-3000-2020-09-08-07_32_17.PNG)
+![homepage](https://raw.githubusercontent.com/https://github.com/clstanton/remote-social/client/src/assets/screencapture-localhost-3000-2020-09-08-07_32_17.PNG)
 
 ## User Story
 
@@ -109,9 +109,7 @@ No current testing
 :octocat: [Conrad Trost](https://github.com/retro1967)
 
 ## Questions
-✉️ Contact me with any questions: [email](mailto:jpd@dewoodyoil.com) , [GitHub](https://github.com/jpd61)<br />
-
-[![ForTheBadge built-with-swag](http://ForTheBadge.com/images/badges/built-with-swag.svg)](https://GitHub.com/jpd61/)
+✉️ Contact me with any questions: [email](mailto:cstanton77@gmail.com) , [GitHub](https://github.com/clstanton)<br />
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
