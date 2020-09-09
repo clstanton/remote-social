@@ -6,7 +6,7 @@
   
 💻 Below is a screenshot of the application:
   
-![homepage](https://raw.githubusercontent.com/clstanton/remote-social/client/src/assets/homepage.png)
+![homepage](https://raw.githubusercontent.com/clstanton/remote-social/client/src/assets/images/homepage.png)
 
 ## User Story
 
